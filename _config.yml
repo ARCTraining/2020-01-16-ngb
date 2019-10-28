@@ -74,25 +74,26 @@ instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post
 #   and:
 #     cp -r _extras/snippet_library/EPCC_Cirrus_pbs/* _includes/snippets
 #
-host_name: "Graham"
-host_login: "graham.computecanada.ca"
-host_location: "University of Waterloo"
-host_homedir: "/home"
-host_prompt: "[yourUsername@gra-login1 ~]$"
+# EPCC, The University of Edinburgh: Cirrus + PBS Pro
+host_name: "Cirrus"
+host_login: "login.cirrus.ac.uk"
+host_location: "EPCC, The University of Edinburgh"
+host_homedir: "/lustre/home/tc001/lola"
+host_prompt: "[yourUsername@cirrus-login0 ~]$"
 local_prompt: "[user@laptop ~]$"
-sched_name: "SLURM"
-sched_submit: "sbatch"
-sched_submit_options: ""
-sched_status: "squeue"
+sched_name: "PBS Pro"
+sched_submit: "qsub"
+sched_submit_options: "-A tc001 -q R387726"
+sched_status: "qstat"
 sched_flag_user: "-u yourUsername"
-sched_del: "scancel"
-sched_interactive: "srun"
-sched_flag_interactive: ""
-sched_info: "sinfo"
-sched_comment: "#SBATCH"
-sched_flag_name: "-J"
-sched_hist: "sacct -u yourUsername"
-sched_flag_histdetail: "-l -j"
+sched_del: "qdel"
+sched_interactive: "qsub"
+sched_flag_interactive: "-IVl select=1:ncpus=1"
+sched_info: "pbsnodes -a"
+sched_comment: "#PBS"
+sched_flag_name: "-N"
+sched_hist: "qstat -x"
+sched_flag_histdetail: "-f"
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:
@@ -100,7 +101,7 @@ workshop_interactive_queues:
   - testing
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 0
+start_time: 540
 
 # Specify that things in the episodes collection should be output.
 collections:
