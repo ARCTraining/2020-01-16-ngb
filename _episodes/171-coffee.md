@@ -1,4 +1,4 @@
 ---
 title: "Coffee Break"
-break: 60
+break: 30
 ---

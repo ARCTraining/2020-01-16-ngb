@@ -1,7 +1,7 @@
 ---
 title: "Bootstrapping your use of HPC"
 teaching: 10
-exercises: 60
+exercises: 30
 questions:
 - "How can I get started on using HPC?"
 - "Where can I get help to start using HPC?"
