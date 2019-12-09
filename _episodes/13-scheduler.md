@@ -123,9 +123,9 @@ resources we must customize our job script.
 
 Comments in UNIX (denoted by `#`) are typically ignored. But there are exceptions. For instance the
 special `#!` comment at the beginning of scripts specifies what program should be used to run it
-(typically `/bin/bash`). Schedulers like {{ site.workshop_sched_name }} also have a special comment
+(typically `/bin/bash`). Schedulers like {{ site.sched_name }} also have a special comment
 used to denote special scheduler-specific options. Though these comments differ from scheduler to
-scheduler, {{ site.workshop_sched_name }}'s special comment is `{{ site.sched_comment }}`.
+scheduler, {{ site.sched_name }}'s special comment is `{{ site.sched_comment }}`.
 Anything following the `{{ site.sched_comment }}` comment is interpreted as an
 instruction to the scheduler.
 
@@ -153,15 +153,6 @@ sleep 120
 {: .output}
 
 Fantastic, we've successfully changed the name of our job!
-
-> ## Setting up email notifications
-> 
-> Jobs on an HPC system might run for days or even weeks. We probably have better things to do than
-> constantly check on the status of our job with `{{ site.sched_status }}`. Looking at the
-> man page for `{{ site.sched_submit }}`, can you set up our test job to send you an email
-> when it finishes?
-> >
-{: .challenge}
 
 ### Resource requests
 
