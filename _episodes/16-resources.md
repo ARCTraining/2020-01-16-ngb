@@ -68,12 +68,10 @@ the left and right arrow keys to scroll through fields).
 
 Some interesting fields include the following:
 
-* **Hostname** - Where did your job run?
-* **MaxRSS** - What was the maximum amount of memory used?
-* **Elapsed** - How long did the job take?
-* **State** - What is the job currently doing/what happened to it?
-* **MaxDiskRead** - Amount of data read from disk.
-* **MaxDiskWrite** - Amount of data written to disk.
+* **exec_host** - Where did your job run?
+* **resources_used.mem** - What was the maximum amount of memory used?
+* **resources_used.walltime** - How long did the job take?
+* **resources_used.ncpu** - How many cores did the job use?
 
 ## Measuring the statistics of currently running tasks
 
