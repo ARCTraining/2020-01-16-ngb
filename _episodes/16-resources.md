@@ -34,8 +34,6 @@ probably the minimum, with 20-30% being more typical. Keep in mind that if you a
 your job may not run even though enough resources are available, because the scheduler will be
 waiting to match what you asked for.
 
-{% include /snippets/16/bench.snip %}
-
 Once the job completes (note that it takes much less time than expected), we can query the 
 scheduler to see how long our job took and what resources were used. We will use `{{ site.sched_hist }}` to
 get statistics about our job.
