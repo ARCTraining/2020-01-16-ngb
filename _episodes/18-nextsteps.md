@@ -61,7 +61,7 @@ and this will differ from individual to individual!
 > - The balance of processes to threads used for the parallel calculation
 >
 > In this exercise, you should try and decide on a good choice of resources and settings
-> on {{ site.host }} for a typical biomolecular system. This will involve:
+> on {{ site.host_name }} for a typical biomolecular system. This will involve:
 >
 > - Downloading the input file for GROMACS from [{{ site.url }}{{site.baseurl }}/files/ion-channel.tpr]({{ site.url }}{{site.baseurl }}/files/ion-channel.tpr)
 > - Writing a job submission script to run GROMACS on {{ site.host }} using the system documentation
