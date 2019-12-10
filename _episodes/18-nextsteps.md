@@ -114,4 +114,6 @@ and this will differ from individual to individual!
 > At what point does the hardware become overloaded?
 {: .challenge}
 
+{% include links.md %}
+
 
