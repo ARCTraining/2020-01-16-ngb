@@ -10,7 +10,7 @@
 carpentry: "swc"
 
 # Overall title for pages.
-title: "Introduction to High Performance Computing (Part 2)"
+title: "Introduction to High Performance Computing (Next Generation Biologists)"
 
 # Life cycle stage of the lesson
 # possible values: "pre-alpha", "alpha", "beta", "stable"
@@ -75,22 +75,22 @@ instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post
 #     cp -r _extras/snippet_library/EPCC_Cirrus_pbs/* _includes/snippets
 #
 # EPCC, The University of Edinburgh: Cirrus + PBS Pro
-host_name: "Cirrus"
-host_login: "login.cirrus.ac.uk"
-host_location: "EPCC, The University of Edinburgh"
-host_homedir: "/lustre/home/tc007/yourUsername"
-host_prompt: "[yourUsername@cirrus-login0 ~]$"
+host_name: "ARC"
+host_login: "arc4.leeds.ac.uk"
+host_location: "Research Computing, The University of leeds"
+host_homedir: "/nobackup/yourUsername"
+host_prompt: "[yourUsername@login1.arc4 ~]$"
 local_prompt: "[user@laptop ~]$"
-sched_name: "PBS Pro"
+sched_name: "Gridengine"
 sched_submit: "qsub"
 sched_submit_options: "-A tc007 -q R1247997"
 sched_status: "qstat"
 sched_flag_user: "-u yourUsername"
 sched_del: "qdel"
-sched_interactive: "qsub"
+sched_interactive: "qsh"
 sched_flag_interactive: "-IVl select=1:ncpus=1"
 sched_info: "pbsnodes -a"
-sched_comment: "#PBS"
+sched_comment: "#$"
 sched_flag_name: "-N"
 sched_hist: "qstat -x"
 sched_flag_histdetail: "-f"
@@ -101,7 +101,7 @@ workshop_interactive_queues:
   - testing
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 540
+start_time: 570
 
 # Specify that things in the episodes collection should be output.
 collections:
