@@ -71,7 +71,7 @@ to the scheduler, we use the `{{ site.sched_submit }}` command.
 qsub example-job.sh
 ```
 {: .bash}
-```
+
 
 
 And that's all we need to do to submit a job. Our work is done -- now the scheduler takes over and
