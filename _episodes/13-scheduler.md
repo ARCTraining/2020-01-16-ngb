@@ -164,15 +164,7 @@ walltime as an example. We will request 30 seconds of walltime, and attempt to r
 minutes.
 
 
-Submit the job and wait for it to finish. Once it is has finished, check the log file.
-
-```
-{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
-{{ site.host_prompt }} watch -n 60 {{ site.sched_status }} {{ site.sched_flag_user }}
-
-```
-{: .bash}
-
+Submit the job and wait for it to finish. Once it has finished, check the log file.
 
 Our job was killed for exceeding the amount of resources it requested. Although this appears harsh,
 this is actually a feature. Strict adherence to resource requests allows the scheduler to find the
