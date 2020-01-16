@@ -197,10 +197,10 @@ qdel <jobid>
 
 ```
 {: .bash}
+
 ... Note that it might take a minute for the job to disappear from the queue ...
 qstat
-```
-{: .bash}
+
 
 ## Other types of jobs
 
