@@ -138,10 +138,6 @@ sleep 120
 {{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
-```
-{% include /snippets/13/statu_name_output.snip %}
-```
-{: .output}
 
 Fantastic, we've successfully changed the name of our job!
 
@@ -173,13 +169,10 @@ Submit the job and wait for it to finish. Once it is has finished, check the log
 ```
 {{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
 {{ site.host_prompt }} watch -n 60 {{ site.sched_status }} {{ site.sched_flag_user }}
-{% include /snippets/13/long_job_cat.snip %}
+
 ```
 {: .bash}
-```
-{% include /snippets/13/long_job_err.snip %}
-```
-{: .output}
+
 
 Our job was killed for exceeding the amount of resources it requested. Although this appears harsh,
 this is actually a feature. Strict adherence to resource requests allows the scheduler to find the
