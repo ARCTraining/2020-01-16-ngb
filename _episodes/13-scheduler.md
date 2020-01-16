@@ -68,27 +68,22 @@ distinction between running the job through the scheduler and just "running it".
 to the scheduler, we use the `{{ site.sched_submit }}` command.
 
 ```
-[{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
+qsub example-job.sh
 ```
 {: .bash}
 ```
-{% include /snippets/13/submit_output.snip %}
-```
-{: .output}
+
 
 And that's all we need to do to submit a job. Our work is done -- now the scheduler takes over and
 tries to run the job for us. While the job is waiting to run, it goes into a list of jobs called 
 the *queue*. To check on our job's status, we check the queue using the command
-`{{ site.sched_status }} {{ site.sched_flag_user }}`.
+`qstat`.
 
 ```
-{{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
+qstat
 ```
 {: .bash}
-```
-{% include /snippets/13/statu_output.snip %}
-```
-{: .output}
+
 
 We can see all the details of our job, most importantly that it is in the "r" or "RUNNING" state.
 Sometimes our jobs might need to wait in a queue ("qw") or have an error. The best way to check
@@ -158,9 +153,6 @@ required to run a job. This allows the scheduler to find the right time and plac
 job. If you do not specify requirements (such as the amount of time you need), you will likely be
 stuck with your site's default resources, which is probably not what we want.
 
-The following are several key resource requests:
-
-{% include /snippets/13/stat_options.snip %}
 
 Note that just *requesting* these resources does not make your job run faster! We'll talk more 
 about how to make sure that you're using resources effectively in a later episode of this lesson.
@@ -170,15 +162,11 @@ about how to make sure that you're using resources effectively in a later episod
 > Submit a job that will use 1 full node and 5 minutes of walltime.
 {: .challenge}
 
-{% include /snippets/13/env_challenge.snip %}
 
 Resource requests are typically binding. If you exceed them, your job will be killed. Let's use
 walltime as an example. We will request 30 seconds of walltime, and attempt to run a job for two
 minutes.
 
-```
-{% include /snippets/13/long_job.snip %}
-```
 
 Submit the job and wait for it to finish. Once it is has finished, check the log file.
 
@@ -210,30 +198,24 @@ command. Let's submit a job and then cancel it using its job number (remember to
 walltime so that it runs long enough for you to cancel it before it is killed!).
 
 ```
-{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
-{{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
+qstat
+
 ```
 {: .bash}
-```
-{% include /snippets/13/del_job_output1.snip %}
-```
-{: .output}
+
 
 Now cancel the job with it's job number. Absence of any job info indicates that the job has been
 successfully cancelled.
 
 ```
-{% include /snippets/13/del_job.snip %}
-... Note that it might take a minute for the job to disappear from the queue ...
-{{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
+qdel <jobid>
+
 ```
 {: .bash}
+... Note that it might take a minute for the job to disappear from the queue ...
+qstat
 ```
-{% include /snippets/13/del_job_output2.snip %}
-```
-{: .output}
-
-{% include /snippets/13/del_multiple_challenge.snip %}
+{: .bash}
 
 ## Other types of jobs
 
@@ -244,8 +226,8 @@ There are very frequently tasks that need to be done interactively. Creating an 
 script might be overkill, but the amount of resources required is too much for a login node to
 handle. A good example of this might be building a genome index for alignment with a tool like
 [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml). Fortunately, we can run these types of
-tasks as a one-off with `{{ site.sched_interactive }}`.
+tasks as a one-off with `qsh`.
 
-{% include /snippets/13/interactive_example.snip %}
+
 
 {% include links.md %}
