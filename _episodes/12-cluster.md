@@ -11,8 +11,8 @@ objectives:
 - "Understand the general HPC system architecture."
 keypoints:
 - "An HPC system is a set of networked machines."
-- "HPC systems typically provides login nodes and a set of worker nodes."
-- "The resources found on independent (worker) nodes can vary in volume and type (amount of RAM, processor architecture, availability of network mounted file systems, etc.)."
+- "HPC systems typically provides login nodes and a set of compute nodes."
+- "The resources found on independent (compute) nodes can vary in volume and type (amount of RAM, processor architecture, availability of network mounted file systems, etc.)."
 - "Files saved on one node are available on all nodes."
 ---
 
@@ -73,7 +73,7 @@ notice that the current hostname is also part of our prompt!)
 {: .bash}
 
 ```
-{{ site.host_name }}
+login1.arc4.leeds.ac.uk
 ```
 {: .output}
 
@@ -86,24 +86,32 @@ node*, *login node* or *submit node*. A login node serves as an access point to 
 gateway, it is well suited for uploading and downloading files, setting up software, and running
 quick tests. It should never be used for doing actual work.
 
-The real work on a cluster gets done by the *worker* (or *compute*) *nodes*. Worker nodes come in
+The real work on a cluster gets done by the *compute* (or *worker*) *nodes*. Compute nodes come in
 many shapes and sizes, but generally are dedicated to long or hard tasks that require a lot of
 computational resources.
 
-All interaction with the worker nodes is handled by a specialized piece of software called a
+All interaction with the compute nodes is handled by a specialized piece of software called a
 scheduler (the scheduler used in this lesson is called {{ site.workshop_shed_name }}). We'll
 learn more about how to use the scheduler to submit jobs next, but for now, it can also tell us
-more information about the worker
-nodes.
+more information about the compute nodes.
 
-For example, we can view all of the worker nodes with the `{{ site.sched_info }}` command.
+For example, we can view all of the compute nodes with the `qhost` command.
 
 ```
-{{ site.host_prompt}} {{ site.sched_info }}
+qhost
 ```
 {: .bash}
 ```
-{% include /snippets/12/info.snip %}
+[issmcal@login1.arc4 ~]$ qhost
+HOSTNAME                ARCH         NCPU NSOC NCOR NTHR  LOAD  MEMTOT  MEMUSE  SWAPTO  SWAPUS
+----------------------------------------------------------------------------------------------
+global                  -               -    -    -    -     -       -       -       -       -
+d10s0b1                 lx-amd64       40    2   40   40 40.04  187.2G   36.4G   32.0G  512.0K
+d10s0b2                 lx-amd64       40    2   40   40 40.04  187.2G   36.0G   32.0G     0.0
+d10s0b3                 lx-amd64       40    2   40   40 39.39  187.2G   33.4G   32.0G    5.8M
+d10s0b4                 lx-amd64       40    2   40   40 40.02  187.2G   39.6G   32.0G     0.0
+d10s10b1                lx-amd64       40    2   40   40 40.01  187.2G    7.3G   32.0G     0.0
+d10s10b2                lx-amd64       40    2   40   40 40.03  187.2G  136.3G   32.0G    6.5M
 ```
 {: .output}
 
@@ -114,7 +122,8 @@ available throughout the HPC system.
 
 > ## Shared file systems
 > This is an important point to remember: files saved on one node (computer) are often available
-> everywhere on the cluster!
+> everywhere on the cluster! We have two 'shared' filesystems- your **home** directories and 
+> **scratch** storage called **nobackup**.
 {: .callout}
 
 ## What's in a node? 
@@ -133,9 +142,9 @@ been restarted.
 > Try to find out the number of CPUs and amount of memory available on your personal computer.
 {: .challenge}
 
-> ## Explore The Head Node
+> ## Explore The Login Node
 >
-> Now we'll compare the size of your computer with the size of the head node: To see the number of
+> Now we'll compare the size of your computer with the size of the login node: To see the number of
 > processors, run:
 >
 > ```
@@ -172,10 +181,10 @@ been restarted.
 
 {% include /snippets/12/explore.snip %}
 
-> ## Compare Your Computer, the Head Node and the Worker Node
+> ## Compare Your Computer, the Head Node and the Compute Node
 >
 > Compare your laptop's number of processors and memory with the numbers you see on the cluster 
-> head node and worker node. Discuss the differences with your neighbor. What implications do
+> head node and compute node. Discuss the differences with your neighbor. What implications do
 > you think the differences might have on running your research work on the different systems
 > and nodes?
 {: .challenge}
@@ -199,7 +208,7 @@ been restarted.
 > ## Differences Between Nodes
 > Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes
 > may have larger amount of memory, or specialized resources such as Graphical Processing Units
-> (GPUs).
+> (GPUs).  On our systems at Leeds we have standard, high-memory and GPU compute nodes.
 {: .callout}
 
 With all of this in mind, we will now cover how to talk to the cluster's scheduler, and use it to
