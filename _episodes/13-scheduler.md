@@ -33,18 +33,9 @@ as in your laptop.
 alt="Compare a job scheduler to a waiter in a restaurant" caption="" %}
 
 
-> ## Job scheduling roleplay (optional)
-> 
-> Your instructor will divide you into groups taking on different roles in the cluster (users,
-> compute nodes and the scheduler). Follow their instructions as they lead you through this
-> exercise. You will be emulating how a job scheduling system works on the cluster.
-> 
-> [*notes for the instructor here*](../guide)
-{: .challenge}
-
 The scheduler used in this lesson is {{ site.sched_name }}. Although {{ site.sched_name }} is not used everywhere,
 running jobs is quite similar regardless of what software is being used. The exact syntax might change, but the
-concepts remain the same.
+concepts remain the same.  You might come across HPC machines running Slurm or PBS elsewhere, the basic ideas are the same.
 
 ## Running a batch job
 
@@ -57,11 +48,13 @@ run as a test.
 
 > ## Creating our test job
 > 
-> Using your favorite text editor, create the following script and run it. Does it run on the
+> Using your favorite text editor (nano or gedit), create the following script and run it. Does it run on the
 > cluster or just our login node?
 >
 >```
->#!/bin/bash
+> #!/bin/bash
+> #$ -cwd -V
+> #$ -l h_rt=00:05:00
 >
 > echo 'This script is running on:'
 > hostname
@@ -97,17 +90,20 @@ the *queue*. To check on our job's status, we check the queue using the command
 ```
 {: .output}
 
-We can see all the details of our job, most importantly that it is in the "R" or "RUNNING" state.
-Sometimes our jobs might need to wait in a queue ("PENDING") or have an error. The best way to check
-our job's status is with `{{ site.sched_status }}`. Of course, running `{{ site.sched_status }}` repeatedly to check on things can be
-a little tiresome. To see a real-time view of our jobs, we can use the `watch` command. `watch`
+We can see all the details of our job, most importantly that it is in the "r" or "RUNNING" state.
+Sometimes our jobs might need to wait in a queue ("qw") or have an error. The best way to check
+our job's status is with `qstat` or `qstat -u "*"` if you want to see the status of all the users. 
+Of course, running `qstat` repeatedly to check on things can be
+a little tiresome. 
+
+To see a real-time view of our jobs, we can use the `watch` command. `watch`
 reruns a given command at 2-second intervals. This is too frequent, and will likely upset your system
 administrator. You can change the interval to a more reasonable value, for example 60 seconds, with the
 `-n 60` parameter. Let's try using it to monitor another job.
 
 ```
-{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
-{{ site.host_prompt }} watch -n 60 {{ site.sched_status }} {{ site.sched_flag_user }}
+{{ site.host_prompt }} qsub example-job.sh
+{{ site.host_prompt }} watch -n 60 qstat
 ```
 {: .bash}
 
