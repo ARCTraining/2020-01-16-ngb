@@ -179,7 +179,17 @@ been restarted.
 > {: .language-bash}
 {: .callout}
 
-{% include /snippets/12/explore.snip %}
+> ## Explore a Compute Node
+> 
+> Finally, let's look at the resources available on the compute nodes where your jobs will actually
+> run. Try running this command to see the name, CPUs and memory available on the worker nodes (the
+> instructors will give you the ID of the compute node to use):
+>
+> ```
+> {{ site.host_prompt }} qhost -h d8s7b4 
+> ```
+> {: .language-bash}
+{: .challenge}
 
 > ## Compare Your Computer, the Head Node and the Compute Node
 >
